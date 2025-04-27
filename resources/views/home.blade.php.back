@@ -1,0 +1,84 @@
+@extends('layouts.app')
+
+@section('content')
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="your-logo.png" alt="Logo" width="30" height="24">
+      Cyber Threats & Defense
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Threats</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Defense</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Carousel -->
+<div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img6.jpg" class="d-block w-100" alt="Slide 1">
+    </div>
+    <div class="carousel-item">
+      <img src="img8.jpg" class="d-block w-100" alt="Slide 2">
+    </div>
+    <div class="carousel-item">
+      <img src="img10.jpg" class="d-block w-100" alt="Slide 3">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<!-- Artikel -->
+<div class="container mt-5">
+
+@foreach ([1, 2, 3] as $i)
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <img src="img{{ 5 + $i }}.jpg" class="img-fluid img-hover" alt="Artikel {{ $i }}">
+    </div>
+    <div class="col-md-8">
+      <h3>Judul Artikel {{ $i }}</h3>
+      <p>Deskripsi artikel ke-{{ $i }}. Ini adalah contoh konten deskriptif yang bisa kamu ubah sendiri nanti.</p>
+    </div>
+  </div>
+  @endforeach
+
+  <!-- Embed Video YouTube -->
+  <div class="row mb-4">
+    @foreach (['VIDEO_ID1', 'VIDEO_ID2', 'VIDEO_ID3'] as $video)
+    <div class="col-md-4">
+      <div class="ratio ratio-16x9">
+        <iframe src="https://www.youtube.com/embed/{{ $video }}" title="YouTube video" allowfullscreen></iframe>
+      </div>
+    </div>
+    @endforeach
+  </div>
+
+  <!-- Konten Bawah -->
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <img src="img15.jpg" class="img-fluid img-hover" alt="Bawah 1">
+    </div>
+    <div class="col-md-8">
+      <h3>Judul Bawah 1</h3>
+      <p>Ini bagian bawah konten. Cocok untuk deskripsi tambahan atau info penting lainnya.</p>
+    </div>
+  </div>
+
+</div>
+@endsection
