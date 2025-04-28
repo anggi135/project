@@ -15,8 +15,8 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Threats</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Defense</a></li>
+        <li class="nav-item"><a class="nav-link" href="/threats">Threats</a></li>
+        <li class="nav-item"><a class="nav-link" href="/defense">Defense</a></li>
       </ul>
     </div>
   </div>
@@ -30,7 +30,7 @@
     <div class="col-md-8">
       <h3>Tentang situs</h3>
       <p>Situs ini adalah hasil dedikasi belajar Pemrograman berorientasi object lanjutan.</p>
-      <a href="/cyber"><b>Baca ajah atau baca doang</b></a>
+      <a href="/about"><b>Baca selengkapnya</b></a>
     </div>
   </div>
   <div class="row mb-5">
@@ -40,6 +40,8 @@
     <div class="col-md-8">
       <h3>Cyber Threats</h3>
       <p>Cyber threat adalah segala bentuk ancaman yang berasal dari dunia maya dan ditujukan untuk merusak, mencuri, atau mengganggu sistem komputer serta jaringan. Ancaman ini mencakup berbagai jenis serangan seperti malware, phishing, ransomware, dan serangan denial-of-service (DoS).</p>
+      <a href="/threats"><b>Baca selengkapnya</b></a>
+    
     </div>
   </div>
   <div class="row mb-5">
@@ -49,6 +51,7 @@
     <div class="col-md-8">
       <h3>Cyber Defense</h3>
       <p>Cyber ​​Defense adalah mekanisme pertahanan jaringan komputer yang mencakup respons terhadap tindakan dan perlindungan infrastruktur kritis dan jaminan informasi untuk organisasi, entitas pemerintah dan kemungkinan jaringan lainnya.</p>
+      <a href="/defense"><b>Baca selengkapnya</b></a>
     </div>
   </div>
 

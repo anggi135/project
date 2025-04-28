@@ -13,6 +13,16 @@
             transform: scale(1.05);
             transition: 0.3s ease;
         }
+        .image-container {
+             max-width: 100%;
+             height: auto;
+            }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
     </style>
 </head>
 <body>

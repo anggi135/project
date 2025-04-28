@@ -21,13 +21,19 @@
     </div>
   </div>
 </nav>
-<br>
-<br>
-<h1>Halo ini test halaman artikel mengenai cyber</h1>
-<br>
-<br>
-<img src="img/threats.jpg" alt="cyber" style="max-width: 100%; height: auto;">
-<br>
-<p><b>Cyber</b>Merubakan cyber cyber jadi ketika cyber melakukan kegiatan cyber maka akan menjadi cyber</p>
+
+<div class="container mt-5">
+
+  <h1 class="text-center">Cyber Threats</h1>
+
+  <!-- Gambar sebelum artikel -->
+  <div class="text-center my-4">
+    <img src="{{ asset('img/itech.jpg') }}" class="img-fluid img-hover" style="max-width: 350px; height: auto;" alt="Cyber Threats">
+  </div>
+
+  <!-- Artikel -->
+  <p><strong>Cyber</strong> merubakan cyber cyber jadi ketika cyber melakukan kegiatan cyber maka akan menjadi cyber.</p>
+
+</div>
 
 @endsection
