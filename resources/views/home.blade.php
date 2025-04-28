@@ -21,28 +21,6 @@
     </div>
   </div>
 </nav>
-
-<!-- Carousel -->
-<div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="img6.jpg" class="d-block w-100" alt="Slide 1">
-    </div>
-    <div class="carousel-item">
-      <img src="img8.jpg" class="d-block w-100" alt="Slide 2">
-    </div>
-    <div class="carousel-item">
-      <img src="img10.jpg" class="d-block w-100" alt="Slide 3">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </button>
-</div>
-
 <!-- Artikel -->
 <div class="container mt-5">
 <div class="row mb-5">
@@ -52,7 +30,7 @@
     <div class="col-md-8">
       <h3>Tentang situs</h3>
       <p>Situs ini adalah hasil dedikasi belajar Pemrograman berorientasi object lanjutan.</p>
-      <a href="aaaa.aa"><b>Baca ajah atau baca doang</b></a>
+      <a href="/cyber"><b>Baca ajah atau baca doang</b></a>
     </div>
   </div>
   <div class="row mb-5">

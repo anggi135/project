@@ -15,8 +15,8 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Threats</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Defense</a></li>
+        <li class="nav-item"><a class="nav-link" href="/threats">Threats</a></li>
+        <li class="nav-item"><a class="nav-link" href="/defense">Defense</a></li>
       </ul>
     </div>
   </div>
