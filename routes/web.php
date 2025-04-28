@@ -8,6 +8,6 @@ Route::get('/', function () {
 Route::get('/cyber', function () {
     return view('cyber');
 });
-Route::get('/threts', function () {
+Route::get('/threats', function () {
     return view('cyber');
 });
