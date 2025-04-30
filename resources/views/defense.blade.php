@@ -32,7 +32,7 @@
   </div>
 
   <!-- Artikel -->
-  <p><strong>Cyber</strong> merubakan cyber cyber jadi ketika cyber melakukan kegiatan cyber maka akan menjadi cyber.</p>
+  <p><strong>Cyber</strong> merubates test test test test test kan cyber cyber jadi ketika cyber melakukan kegiatan cyber maka akan menjadi cyber.</p>
 
 </div>
 

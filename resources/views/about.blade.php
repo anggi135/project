@@ -32,7 +32,8 @@
   </div>
 
   <!-- Artikel -->
-  <p><strong>Cyber</strong> merubakan cyber cyber jadi ketika cyber melakukan kegiatan cyber maka akan menjadi cyber.</p>
+  <p><strong>Cyber</strong> aiapaknkncxjewndw cuwhjknwxwme uchnam cmkwqcnqjknm  merubakan cyber cyber jadi ketika cyber melakukan kegiatan cyber maka akan menjadi cyber.</p>
+  <p>akjkahsknak samwndsneces,fnck skecnjksnmck skevnk kn</p>
 
 </div>
 
