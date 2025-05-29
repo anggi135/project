@@ -2,85 +2,206 @@
 
 @section('content')
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- Hero Section -->
+<section class="text-white py-5" style="background: linear-gradient(to right, #1f2937, #111827);">
+  <div class="container text-center">
+    <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">📛 Cyber Threats</h1>
+    <p class="lead animate__animated animate__fadeInUp">Pahami Ancaman Dunia Digital dan Cara Menghadapinya</p>
+  </div>
+</section>
+
+<!-- Threat Overview -->
+<section class="py-5 bg-light text-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">
-      <img src="img/favicon.png" alt="Logo" width="30" height="24">
-      Cyber Threats & Defense
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/threats">Threats</a></li>
-        <li class="nav-item"><a class="nav-link" href="/defense">Defense</a></li>
-      </ul>
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-right">
+        <img src="{{ asset('img/threats.jpg') }}" class="img-fluid rounded shadow" alt="Cyber Threats">
+      </div>
+      <div class="col-md-6" data-aos="fade-left">
+        <h2 class="fw-bold mb-3">Apa itu Cyber Threats?</h2>
+        <p style="text-align: justify;">Cyber threats adalah ancaman atau serangan yang dilakukan oleh penjahat siber / hacker untuk merusak dan mencuri data, bahkan memusnahkan sistem digital. Ancaman ini menjadi tantangan serius di era digital saat ini.</p>
+      </div>
     </div>
+
+    <!-- Jenis-jenis Serangan -->
+    <div class="mb-5" data-aos="fade-up">
+      <h3 class="fw-bold text-center">Jenis-jenis Serangan Siber Umum</h3>
+      <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+        <div class="col">
+          <a href="#phishing" class="text-decoration-none text-dark">
+            <div class="card h-100 border-0 shadow-sm hover-shadow animate__animated animate__fadeIn">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">🎣 Phishing</h5>
+                <p class="card-text">Penipuan dengan menyamar sebagai pihak terpercaya untuk mencuri data pribadi korban seperti OTP, password, dan lainnya.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="#sqlinjection" class="text-decoration-none text-dark">
+            <div class="card h-100 border-0 shadow-sm hover-shadow animate__animated animate__fadeIn">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">💉 SQL Injection</h5>
+                <p class="card-text">Teknik menyisipkan kode SQL jahat untuk mengakses dan merusak database aplikasi yang rentan.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="#ddos" class="text-decoration-none text-dark">
+            <div class="card h-100 border-0 shadow-sm hover-shadow animate__animated animate__fadeIn">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">🌐 DDoS</h5>
+                <p class="card-text">Membanjiri server dengan trafik palsu hingga sistem menjadi lambat atau lumpuh.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="#bruteforce" class="text-decoration-none text-dark">
+            <div class="card h-100 border-0 shadow-sm hover-shadow animate__animated animate__fadeIn">
+              <div class="card-body">
+                <h5 class="card-title fw-bold">🔑 Brute Force</h5>
+                <p class="card-text">Menebak password dengan mencoba berbagai kombinasi username dan password secara otomatis.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Penjelasan Detail -->
+    <div class="accordion" id="threatDetails">
+
+      <div class="accordion-item" id="phishing">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePhishing" aria-expanded="true">
+            Cara Kerja Phishing
+          </button>
+        </h2>
+        <div id="collapsePhishing" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            <ul>
+              <li>Penyerang menentukan target pengguna potensial.</li>
+              <li>Mengirim email/sms palsu yang tampak sah.</li>
+              <li>Menanamkan link palsu yang menuju situs login tiruan.</li>
+              <li>Korban tertipu dan memasukkan data sensitif.</li>
+              <li>Data dikirim ke server milik penyerang.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item" id="sqlinjection">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSQL">
+            Cara Kerja SQL Injection
+          </button>
+        </h2>
+        <div id="collapseSQL" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            <ul>
+              <li>Penyerang mengidentifikasi form input yang rentan.</li>
+              <li>Menginputkan kode SQL seperti <code>' OR '1'='1</code>.</li>
+              <li>Database akan menganggap perintah itu valid dan membuka akses.</li>
+              <li>Penyerang dapat mencuri, mengubah, atau menghapus data.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item" id="ddos">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDdos">
+            Cara Kerja DDoS
+          </button>
+        </h2>
+        <div id="collapseDdos" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            <ul>
+              <li>Penyerang menginfeksi ribuan perangkat menjadi botnet.</li>
+              <li>Botnet dikendalikan untuk mengakses satu server target secara serentak.</li>
+              <li>Permintaan berlebih membuat sistem overload dan akhirnya down.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion-item" id="bruteforce">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBrute">
+            Cara Kerja Brute Force
+          </button>
+        </h2>
+        <div id="collapseBrute" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            <ul>
+              <li>Penyerang menyiapkan wordlist berisi kombinasi username dan password.</li>
+              <li>Tools seperti Hydra atau Medusa digunakan untuk brute login otomatis.</li>
+              <li>Jika ada kombinasi yang cocok, sistem bisa dijebol.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Kesimpulan -->
+    <div class="mt-5" data-aos="fade-up">
+      <h3 class="fw-bold mb-3">Kesimpulan</h3>
+      <p style="text-align: justify;">Cyber threats adalah tantangan besar bagi pengguna internet. Dengan memahami jenis-jenis serangan dan cara kerjanya, kita bisa meningkatkan kewaspadaan dan perlindungan terhadap data dan sistem yang kita gunakan sehari-hari.</p>
+    </div>
+
   </div>
-</nav>
+</section>
 
-<div class="container mt-5">
+<!-- Komentar Section -->
+<hr class="my-5">
 
-  <h1 class="text-center">Cyber Threats</h1>
-
-  <!-- Gambar sebelum artikel -->
-  <div class="text-center my-4">
-    <img src="{{ asset('img/threats.jpg') }}" class="img-fluid img-hover" style="max-width: 350px; height: auto;" alt="Cyber Threats">
+{{-- SESSION LOGIN --}}
+@if (!session()->has('user'))
+  <h4>Login atau Daftar untuk Berkomentar</h4>
+  @if(session('error'))
+    <p class="text-danger">{{ session('error') }}</p>
+  @endif
+  <form method="POST" action="/login" class="mb-4">
+    @csrf
+    <div class="mb-2">
+      <input type="text" name="username" class="form-control" placeholder="Nama" required>
+    </div>
+    <div class="mb-2">
+      <input type="password" name="password" class="form-control" placeholder="Password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <a href="/register" class="btn btn-link">Daftar</a>
+  </form>
+@else
+  <div class="d-flex justify-content-between align-items-center">
+    <h5>Hi, {{ session('user') }} 👋</h5>
+    <form method="POST" action="/logout">
+      @csrf
+      <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+    </form>
   </div>
 
-  <!-- Artikel -->
-  <p><strong>Cyber threats</strong> adalah ancaman atau serangan yang dilakukan oleh penjahat siber untuk merusak dan mencuri data, bahkan ada juga yang sampai memusnahkan data.</p>
-  <h2>Jenis-jenis serangan umum</h2>
-  <p>Sebetulnya banyak sekali serangan yang dilakukan oleh penjahat siber namun diartikel ini kami hanya akan membahas beberapa serangan umum saja.</p>
-  <ul>
-    <li><strong>Phishing</strong>: Penipuan dengan menyamar sebagai pihak terpercaya untuk mencuri data pribadi.</li>
-    <li><strong>SQL Injection</strong>: Menyisipkan perintah SQL ke formulir input untuk mengakses atau merusak database.</li>
-    <li><strong>DDoS (Distributed Denial of Service)</strong>: Membanjiri server dengan lalu lintas palsu agar tidak bisa melayani pengguna sah.</li>
-    <li><strong>Brute Force Attack</strong>: Mencoba berbagai kombinasi username dan password hingga menemukan yang benar.</li>
-  </ul>
-  <h2>Cara kerja serangan siber</h2>
-  <b>A. Phising</b>
-  <p>Phishing adalah metode penipuan siber yang mencoba menipu korban agar memberikan informasi sensitif, seperti username, password, nomor kartu kredit, atau OTP </p>
-  <b>Cara kerja Phising</b>
-  <ul>
-    <li>Targeting, Penyerang menentukan target.</li>
-    <li>Pengiriman umpan, Penyerang mengirim email, sms atau pesan yang tampak sah dengan menyamar menjadi petugas atau teler bank dll</li>
-    <li>Kemudian penyerang mengirim tautan atau url palsu</li>
-    <li>Penyerang memanipulasi psikologis korban</li>
-    <li>Korban tertipu</li>
-    <li>Kemudian penyerang mengambil alih data korban dan menyalah gunakannya.</li>
-  </ul>
-  <b>B. SQL Inject</b>
-  <p>SQL inject adalah teknik serangan yang menargetkan input berbahaya didalam aplikasi seperti formulir, login, request tampering dan parameter url yang tujuannya tak lain untuk mengakses atau merusak database.</p>
-  <b>Cara kerja SQL Inject</b>
-  <ul>
-    <li>Penyerang mencari form input aplikasi, Login, regist, formulir dll</li>
-    <li>Penyerang mencoba kueri <strong>[ ' or '1'='1 ]</strong> karena nila itu selalu benar, maka login akan dianggap valid dan berhasil masuk tanpa passwd.</li>
-  </ul>
-  <b>C. DDOS (Distributed Denial of Service)</b>
-  <p>DDOS adalah jenis serangan siber umum dimana serangan ini bertujuan untuk membanjiri server, jaringan atau layanan online. Si penyerang membuat lalu lalulintas yang sangat besar terhadap server sehingga sistem yang memiliki kapasitas akan menjadi lambat. hal buruknya adalah sistem akan lumpuh sepenuhnya.</p>
-  <b>Cara kerja DDos</b>
-  <ul>
-    <li>Penyerang menyiapkan ribuan bahkan jutaan Botnet atau zombie dalam satu jaringan.</li>
-    <li>Penyerang menentukan target situs, server atau layanan API.</li>
-    <li>Kemudian Botnet yang telah disiapkan secara serentak akan mengirim permintaan HTTP/S, TCP/UDP atau ICMP/Ping secara terus-menerus.</li>
-  </ul>
-  <b>D. Brute Force Attack</b>
-  <p>Ini hampir mirip cara seperti login pada umumnya seperti memasukan username dan passwd, Akan tetapi Serangan Bruteforce adalah metode dimana sipenyerang mencoba semua kombinasi username dan passwd dengan otomatis sampai menemukan nilai yang benar.</p>
-  <b>Cara kerja Bruteforce attack</b>
-  <ul>
-    <li>Menentukan target login pada aplikasi.</li>
-    <li>memperisapkan kumpulan usernam dan passwd atau yang disebut wordlist.</li>
-    <li>Menyiapkan beberapa tools, seperti Hydra medusa dll.</li>
-    <li>Kemudian mengeksekusinya dengan permintaan yang berulang.</li>
-  </ul>
-  <b>Kesimpulan</b>
-  <p>Cyber threats atau serangan siber adalah ancaman nyata di era digital yang semakin berkembang. banyak sekali penjahat siber yang memanfaatkan metode atau celah seperti Phising, Sql inject, Ddos dan Bruteforce untuk mencuri, merusak bahkan menghancurkan data pribadi maupun sistem dari organisasi.</p>
-  <p>Dengan memahami cara kerja dari serangan siber umum yang terjadi, kita bisa lebih waspada dan mengambil langkah-langkah pencegahan yang tepat dan juga verifikasi berlapis tentunya juga dengan pengamanan captcha serta firewal.</p>
+  <form method="POST" action="/comment" class="mt-3 mb-5">
+    @csrf
+    <textarea name="message" class="form-control" required placeholder="Tulis komentarmu di sini..." rows="3"></textarea>
+    <button type="submit" class="btn btn-success mt-2">Kirim Komentar</button>
+  </form>
+@endif
 
-</div>
+<hr>
+
+<h4>Komentar Pengunjung</h4>
+<ul class="list-group mb-5">
+  @forelse($comments as $comment)
+    <li class="list-group-item">
+      <strong>{{ $comment['user'] }}</strong>: {{ $comment['message'] }}
+    </li>
+  @empty
+    <li class="list-group-item">Belum ada komentar.</li>
+  @endforelse
+</ul>
 
 @endsection
