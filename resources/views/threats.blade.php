@@ -152,9 +152,8 @@
       <p style="text-align: justify;">Cyber threats adalah tantangan besar bagi pengguna internet. Dengan memahami jenis-jenis serangan dan cara kerjanya, kita bisa meningkatkan kewaspadaan dan perlindungan terhadap data dan sistem yang kita gunakan sehari-hari.</p>
     </div>
 
-  </div>
-</section>
 
+    
 <!-- Komentar Section -->
 <hr class="my-5">
 
@@ -203,5 +202,8 @@
     <li class="list-group-item">Belum ada komentar.</li>
   @endforelse
 </ul>
+
+  </div>
+</section>
 
 @endsection

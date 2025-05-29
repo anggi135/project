@@ -158,10 +158,7 @@
       <p class="text-justify">Cyber defense bukan cuma soal teknologi, tapi juga soal edukasi, awareness, dan ketepatan strategi. Dengan langkah-langkah pencegahan yang tepat, kita bisa mengurangi resiko serangan digital secara signifikan.</p>
     </div>
 
-  </div>
-</section>
-
-{{-- SESSION LOGIN --}}
+    {{-- SESSION LOGIN --}}
 @if (!session()->has('user'))
   <h4>Login atau Daftar untuk Berkomentar</h4>
   @if(session('error'))
@@ -206,4 +203,7 @@
     <li class="list-group-item">Belum ada komentar.</li>
   @endforelse
 </ul>
+
+  </div>
+</section>
 @endsection
