@@ -151,58 +151,42 @@
       <h3 class="fw-bold mb-3">Kesimpulan</h3>
       <p style="text-align: justify;">Cyber threats adalah tantangan besar bagi pengguna internet. Dengan memahami jenis-jenis serangan dan cara kerjanya, kita bisa meningkatkan kewaspadaan dan perlindungan terhadap data dan sistem yang kita gunakan sehari-hari.</p>
     </div>
-
-
-    
-<!-- Komentar Section -->
-<hr class="my-5">
-
-{{-- SESSION LOGIN --}}
-@if (!session()->has('user'))
-  <h4>Login atau Daftar untuk Berkomentar</h4>
-  @if(session('error'))
-    <p class="text-danger">{{ session('error') }}</p>
-  @endif
-  <form method="POST" action="/login" class="mb-4">
-    @csrf
-    <div class="mb-2">
-      <input type="text" name="username" class="form-control" placeholder="Nama" required>
+<div class="container mt-4">
+  {{-- Komentar --}}
+  @if (Auth::check())
+    <div class="d-flex justify-content-between align-items-center">
+      <h5>Hi, {{ Auth::user()->name }} 👋</h5>
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+      </form>
     </div>
-    <div class="mb-2">
-      <input type="password" name="password" class="form-control" placeholder="Password" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-    <a href="/register" class="btn btn-link">Daftar</a>
-  </form>
-@else
-  <div class="d-flex justify-content-between align-items-center">
-    <h5>Hi, {{ session('user') }} 👋</h5>
-    <form method="POST" action="/logout">
+
+    <form method="POST" action="{{ route('comment.store') }}" class="mt-3 mb-5">
       @csrf
-      <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+      <input type="hidden" name="page" value="threats">
+      <textarea name="comment" class="form-control" required placeholder="Tulis komentarmu di sini..." rows="3"></textarea>
+      <button type="submit" class="btn btn-success mt-2">Kirim Komentar</button>
     </form>
-  </div>
+  @else
+    <h4>Login atau Daftar untuk Berkomentar</h4>
+    <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
+    <a href="{{ route('register') }}" class="btn btn-link">Daftar</a>
+  @endif
 
-  <form method="POST" action="/comment" class="mt-3 mb-5">
-    @csrf
-    <textarea name="message" class="form-control" required placeholder="Tulis komentarmu di sini..." rows="3"></textarea>
-    <button type="submit" class="btn btn-success mt-2">Kirim Komentar</button>
-  </form>
-@endif
+  <hr>
 
-<hr>
-
-<h4>Komentar Pengunjung</h4>
-<ul class="list-group mb-5">
-  @forelse($comments as $comment)
-    <li class="list-group-item">
-      <strong>{{ $comment['user'] }}</strong>: {{ $comment['message'] }}
-    </li>
-  @empty
-    <li class="list-group-item">Belum ada komentar.</li>
-  @endforelse
-</ul>
-
+  <h4>Komentar Pengunjung</h4>
+  <ul class="list-group mb-5">
+    @forelse ($comments as $comment)
+      <li class="list-group-item">
+        <strong>{{ $comment->user->name ?? 'Anonim' }}</strong>: {{ $comment->comment }}
+      </li>
+    @empty
+      <li class="list-group-item">Belum ada komentar.</li>
+    @endforelse
+  </ul>
+</div>
   </div>
 </section>
 
