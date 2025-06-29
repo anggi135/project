@@ -37,7 +37,7 @@
           <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="/threats">Threats</a></li>
           <li class="nav-item"><a class="nav-link" href="/defense">Defense</a></li>
-          <li class="nav-item"><a class="nav-link" href="#tujuan">Tujuan</a></li> <!-- Tambahan ini -->
+          <li class="nav-item"><a class="nav-link" href="#tujuan">Tujuan</a></li>
         </ul>
       </div>
     </div>
