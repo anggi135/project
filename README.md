@@ -74,7 +74,7 @@ DB_DATABASE=cyber_defense
 DB_USERNAME=root
 DB_PASSWORD=
 
-# Generate application key
+# Generate application key (options)
 php artisan key:generate
 
 # Jalankan migrasi database
