@@ -19,7 +19,6 @@ use App\Http\Controllers\UrlCheckController;
 // Halaman Utama & Info
 // =============================
 Route::get('/', fn () => view('home'));
-Route::get('/about', fn () => view('about'));
 
 // Halaman artikel dengan komentar
 Route::get('/threats', function () {

@@ -189,5 +189,8 @@
 </div>
   </div>
 </section>
-
+<!-- Footer -->
+<footer class="text-center text-white bg-dark py-3" data-aos="fade-up">
+  <small>&copy; 2025 Cyber Defense Team | All Rights Reserved</small>
+</footer>
 @endsection
