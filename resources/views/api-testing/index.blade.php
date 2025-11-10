@@ -136,124 +136,140 @@
 <section class="api-container fade-in-up delay-1">
   <div class="container">
     <div class="row g-4">
-      <!-- LEFT COLUMN -->
-      <div class="col-lg-3 fade-in-up delay-2">
-        <div class="card api-card p-3 mb-4">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <h6 class="mb-0">Saved Requests</h6>
-            <button id="refreshSaved" class="btn btn-sm btn-outline-light">Refresh</button>
+      <div class="container-fluid mt-4">
+  <div class="d-flex justify-content-end mb-3">
+    <!-- Tombol Gir -->
+    <button id="toggleSidebar" class="btn btn-outline-light btn-sm">
+      <i class="bi bi-gear-fill"></i>
+    </button>
+  </div>
+
+  <div class="row" id="apiLayout">
+    <!-- ======= KOLOM UTAMA (Send Request) ======= -->
+    <div id="mainCol" class="col-lg-12 fade-in-up delay-3">
+      <div class="card api-card p-4 shadow-lg">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="mb-0">Send Request</h4>
+          <button id="saveRequestBtn" class="btn btn-sm btn-outline-light">Save</button>
+        </div>
+
+        <!-- FORM -->
+        <form id="apiForm" class="mb-3">
+          <div class="row g-2 align-items-center">
+            <div class="col-md-2">
+              <select id="method" class="form-select">
+                <option>GET</option>
+                <option>POST</option>
+                <option>PUT</option>
+                <option>PATCH</option>
+                <option>DELETE</option>
+              </select>
+            </div>
+            <div class="col-md-7">
+              <input id="url" class="form-control" placeholder="Enter API URL (https://...)" required="">
+            </div>
+            <div class="col-md-2">
+              <input id="timeout" type="number" class="form-control" min="1" placeholder="timeout s" value="10">
+            </div>
+            <div class="col-md-1 d-grid">
+              <button type="submit" class="btn btn-dark">Send</button>
+            </div>
           </div>
-          <div id="savedList" class="list-group my-2" style="max-height:340px; overflow:auto;"></div>
-          <div class="d-grid mt-2">
-            <button id="newSaved" class="btn btn-sm btn-success">+ New Saved</button>
+        </form>
+
+        <!-- TABS -->
+        <ul class="nav nav-tabs mb-2" role="tablist">
+          <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#paramsTab">Params</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#headersTab">Headers</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#bodyTab">Body</button></li>
+          <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#authTab">Auth</button></li>
+        </ul>
+
+        <div class="tab-content p-3 border rounded-bottom">
+          <div class="tab-pane fade show active" id="paramsTab">
+            <div id="paramsList" class="mb-2"></div>
+            <div class="d-flex gap-2">
+              <button type="button" class="btn btn-outline-light btn-sm" id="addParam">+ Add Param</button>
+              <button type="button" class="btn btn-outline-danger btn-sm" id="clearParams">Clear</button>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="headersTab">
+            <div id="headersList" class="mb-2"></div>
+            <div class="d-flex gap-2">
+              <button type="button" class="btn btn-outline-light btn-sm" id="addHeader">+ Add Header</button>
+              <button type="button" class="btn btn-outline-danger btn-sm" id="clearHeaders">Clear</button>
+            </div>
+          </div>
+
+          <div class="tab-pane fade" id="bodyTab">
+            <label class="form-label">Raw Body</label>
+            <textarea id="body" class="form-control" rows="6" placeholder="Raw body (JSON, XML, text)..."></textarea>
+          </div>
+
+          <div class="tab-pane fade" id="authTab">
+            <div class="mb-2">
+              <label class="form-label">Bearer Token</label>
+              <input id="bearer" class="form-control" placeholder="Token (Authorization: Bearer ...)">
+            </div>
+            <div class="form-text">If you fill token it will be added to headers automatically.</div>
           </div>
         </div>
 
-        <div class="card api-card p-3 fade-in-up delay-3">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <h6 class="mb-0">History</h6>
-            <small class="text-muted">recent</small>
+        <!-- RESPONSE -->
+        <div class="mt-4 fade-in-up delay-4">
+          <h5>Response</h5>
+          <div class="resp-toolbar d-flex gap-2 mb-2">
+            <div class="btn-group">
+              <button id="modePretty" class="btn btn-sm btn-outline-light active">Pretty</button>
+              <button id="modeRaw" class="btn btn-sm btn-outline-light">Raw</button>
+              <button id="modeHeaders" class="btn btn-sm btn-outline-light">Headers</button>
+            </div>
+            <button id="copyBtn" class="btn btn-sm btn-outline-light">Copy</button>
+            <button id="downloadBtn" class="btn btn-sm btn-outline-light">Download</button>
           </div>
-          <div id="historyList" style="max-height:220px; overflow:auto; font-size:0.9rem;"></div>
+          <div class="card p-2 bg-light border">
+            <div>Status: <strong id="respStatus">-</strong></div>
+            <div class="d-flex flex-wrap gap-2 mt-2">
+              <span class="meta-pill">Length: <span id="respLength">-</span></span>
+              <span class="meta-pill">Time: <span id="respTime">-</span></span>
+              <span class="meta-pill">Speed: <span id="respSpeed">-</span></span>
+            </div>
+          </div>
+          <pre id="respHeaders" class="p-2 mt-3" style="max-height:120px; overflow:auto;"></pre>
+          <pre id="respBody" class="p-3 mt-3" style="min-height:260px; overflow:auto;"></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= KOLOM SAMPING (Saved & History) ======= -->
+    <div id="sideCol" class="col-lg-3 fade-in-up delay-2" style="display:none;">
+      <div class="card api-card p-3 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h6 class="mb-0">Saved Requests</h6>
+          <button id="refreshSaved" class="btn btn-sm btn-outline-light">Refresh</button>
+        </div>
+        <div id="savedList" class="list-group my-2" style="max-height:340px; overflow:auto;"></div>
+        <div class="d-grid mt-2">
+          <button id="newSaved" class="btn btn-sm btn-success">+ New Saved</button>
         </div>
       </div>
 
-      <!-- RIGHT COLUMN -->
-      <div class="col-lg-9 fade-in-up delay-3">
-        <div class="card api-card p-4 shadow-lg">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <h4 class="mb-0">Send Request</h4>
-            <button id="saveRequestBtn" class="btn btn-sm btn-outline-light">Save</button>
-          </div>
-
-          <!-- FORM -->
-          <form id="apiForm" class="mb-3">
-            <div class="row g-2 align-items-center">
-              <div class="col-md-2">
-                <select id="method" class="form-select">
-                  <option>GET</option>
-                  <option>POST</option>
-                  <option>PUT</option>
-                  <option>PATCH</option>
-                  <option>DELETE</option>
-                </select>
-              </div>
-              <div class="col-md-7">
-                <input id="url" class="form-control" placeholder="Enter API URL (https://...)" required>
-              </div>
-              <div class="col-md-2">
-                <input id="timeout" type="number" class="form-control" min="1" placeholder="timeout s" value="10">
-              </div>
-              <div class="col-md-1 d-grid">
-                <button type="submit" class="btn btn-dark">Send</button>
-              </div>
-            </div>
-          </form>
-
-          <!-- TABS -->
-          <ul class="nav nav-tabs mb-2">
-            <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#paramsTab">Params</button></li>
-            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#headersTab">Headers</button></li>
-            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#bodyTab">Body</button></li>
-            <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#authTab">Auth</button></li>
-          </ul>
-
-          <div class="tab-content p-3 border rounded-bottom">
-            <div class="tab-pane fade show active" id="paramsTab">
-              <div id="paramsList" class="mb-2"></div>
-              <div class="d-flex gap-2">
-                <button type="button" class="btn btn-outline-light btn-sm" id="addParam">+ Add Param</button>
-                <button type="button" class="btn btn-outline-danger btn-sm" id="clearParams">Clear</button>
-              </div>
-            </div>
-
-            <div class="tab-pane fade" id="headersTab">
-              <div id="headersList" class="mb-2"></div>
-              <div class="d-flex gap-2">
-                <button type="button" class="btn btn-outline-light btn-sm" id="addHeader">+ Add Header</button>
-                <button type="button" class="btn btn-outline-danger btn-sm" id="clearHeaders">Clear</button>
-              </div>
-            </div>
-
-            <div class="tab-pane fade" id="bodyTab">
-              <label class="form-label">Raw Body</label>
-              <textarea id="body" class="form-control" rows="6" placeholder='Raw body (JSON, XML, text)...'></textarea>
-            </div>
-
-            <div class="tab-pane fade" id="authTab">
-              <div class="mb-2">
-                <label class="form-label">Bearer Token</label>
-                <input id="bearer" class="form-control" placeholder="Token (Authorization: Bearer ...)">
-              </div>
-              <div class="form-text">If you fill token it will be added to headers automatically.</div>
-            </div>
-          </div>
-
-          <!-- RESPONSE -->
-          <div class="mt-4 fade-in-up delay-4">
-            <h5>Response</h5>
-            <div class="resp-toolbar d-flex gap-2 mb-2">
-              <div class="btn-group">
-                <button id="modePretty" class="btn btn-sm btn-outline-light active">Pretty</button>
-                <button id="modeRaw" class="btn btn-sm btn-outline-light">Raw</button>
-                <button id="modeHeaders" class="btn btn-sm btn-outline-light">Headers</button>
-              </div>
-              <button id="copyBtn" class="btn btn-sm btn-outline-light">Copy</button>
-              <button id="downloadBtn" class="btn btn-sm btn-outline-light">Download</button>
-            </div>
-            <div class="card p-2 bg-light border">
-              <div>Status: <strong id="respStatus">-</strong></div>
-              <div class="d-flex flex-wrap gap-2 mt-2">
-                <span class="meta-pill">Length: <span id="respLength">-</span></span>
-                <span class="meta-pill">Time: <span id="respTime">-</span></span>
-                <span class="meta-pill">Speed: <span id="respSpeed">-</span></span>
-              </div>
-            </div>
-            <pre id="respHeaders" class="p-2 mt-3" style="max-height:120px; overflow:auto;"></pre>
-            <pre id="respBody" class="p-3 mt-3" style="min-height:260px; overflow:auto;"></pre>
-          </div>
+      <div class="card api-card p-3 fade-in-up delay-3">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h6 class="mb-0">History</h6>
+          <small class="text-muted">recent</small>
+        </div>
+        <div id="historyList" style="max-height:220px; overflow:auto; font-size:0.9rem;">
+          <div class="text-muted mb-1">GET api.edlink.id/certificate/HPE3J2TGNEKIRFDL</div>
+          <div class="text-muted mb-1">GET api.edlink.id</div>
+          <div class="text-muted mb-1">GET google.com</div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
     </div>
   </div>
 </section>
@@ -559,4 +575,21 @@ document.addEventListener('DOMContentLoaded', () => {
   renderHistory();
 });
 </script>
+<script>
+  document.getElementById('toggleSidebar').addEventListener('click', function () {
+    const sideCol = document.getElementById('sideCol');
+    const mainCol = document.getElementById('mainCol');
+
+    if (sideCol.style.display === 'none') {
+      sideCol.style.display = 'block';
+      mainCol.classList.remove('col-lg-12');
+      mainCol.classList.add('col-lg-9');
+    } else {
+      sideCol.style.display = 'none';
+      mainCol.classList.remove('col-lg-9');
+      mainCol.classList.add('col-lg-12');
+    }
+  });
+</script>
+
 @endsection
