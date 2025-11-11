@@ -1,61 +1,139 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Cyber Threats & Defense
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![Laravel](https://img.shields.io/badge/Laravel-12.x-red?logo=laravel)]()
+[![PHP](https://img.shields.io/badge/PHP-8.2-blue?logo=php)]()
+[![License](https://img.shields.io/badge/License-MIT-green.svg)]()
+[![Status](https://img.shields.io/badge/Status-Active-success.svg)]()
+[![Author 1](https://img.shields.io/badge/Author-Anggi%20Prayitno-orange.svg)](https://github.com/anggi135)
+[![Author 2](https://img.shields.io/badge/Author-Captain%20Alfi-teal.svg)](https://github.com/captainalfi)
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Sebuah **website edukasi interaktif** yang dibangun untuk mengenalkan berbagai **ancaman siber**, cara **mendeteksi**, dan **melindungi sistem** dari serangan digital seperti **Phishing**, **SQL Injection**, dan **DoS Attack**.  
+Kini dilengkapi dengan fitur **Api testing, Url Fuzzing dan Url Checker** untuk eksplorasi *ethical hacking* secara edukatif.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Deskripsi Proyek
+Proyek ini merupakan hasil kolaborasi mahasiswa **STTI NIIT I-TECH** yang bertujuan meningkatkan kesadaran keamanan siber melalui pendekatan edukatif berbasis web.  
+Dikembangkan menggunakan **Laravel Framework**, dengan tampilan modern, responsif, dan mudah digunakan.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Fitur Utama
 
-## Learning Laravel
+### Edukatif
+- Informasi dasar dan lanjutan mengenai **ancaman siber** & **strategi pertahanan**.  
+- Fitur **registrasi, login, dan komentar** untuk interaksi antar pengguna.  
+- Artikel Pembelajaran berbasis kasus nyata.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Fitur Teknis (API Tools)
+Tersedia pada menu **Tools Keamanan**:
+- **API Pentesting** — endpoint simulasi serangan umum (SQL Injection, XSS, dll) untuk pembelajaran.  
+- **URL Fuzzing** — mencari *hidden endpoints* atau *directory listing* pada website.  
+- **Website Checker** — menganalisis status domain dan potensi infeksi malware.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Pengaturan Tambahan PHP (Wajib untuk SSL)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Buka file `php.ini`, pastikan ekstensi berikut **aktif** (hapus tanda `;` di depannya):
 
-## Laravel Sponsors
+```ini
+extension=openssl
+extension=curl
+extension=php_openssl.dll
+curl.cainfo = "arahkan-ke \\app\\ssl\\cacert.pem"
+openssl.cafile = "arahkan-ke \\app\\ssl\\cacert.pem"
+````
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Setelah mengubah `php.ini`, **restart Apache atau server lokal** agar perubahan berlaku.
 
-### Premium Partners
+> Lokasi umum file `php.ini`:
+>
+> * **Windows (XAMPP):** `C:\xampp\php\php.ini`
+> * **Laragon:** `C:\laragon\bin\php\php-x.x.x\php.ini`
+> * **Linux (Apache):** `/etc/php/8.x/apache2/php.ini`
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+Pastikan server dapat melakukan koneksi keluar (outbound) pada port **443** agar SSL Scanner berfungsi dengan benar.
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Teknologi yang Digunakan
 
-## Code of Conduct
+| Komponen               | Teknologi                         |
+| ---------------------- | --------------------------------- |
+| **Framework**          | Laravel 12                        |
+| **Bahasa Pemrograman** | PHP, HTML, CSS, JavaScript        |
+| **Frontend**           | Blade Template + Bootstrap        |
+| **Database**           | MySQL                             |
+| **Tools Tambahan**     | jQuery, Composer, XAMPP / Laragon |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+## Kebutuhan Sistem
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Software
 
-## License
+* OS: Windows / Linux / macOS
+* Laravel 12 & Composer
+* XAMPP / Laragon (Apache, MySQL, PHP)
+* Visual Studio Code (atau editor sejenis)
+* Browser modern: Chrome / Firefox
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Hardware
+
+* Prosesor: Intel Core i3 atau setara
+* RAM: Minimal 4 GB
+* Penyimpanan: Minimal 20 GB
+* Resolusi layar: 1366×768 atau lebih
+
+
+## Cara Menjalankan Proyek
+
+```bash
+git clone https://github.com/anggi135/project.git
+cd project
+
+# Salin file .env
+cp .env.example .env
+
+# Edit konfigurasi database sesuai lingkungan lokal
+DB_DATABASE=cyber_defense
+DB_USERNAME=root
+DB_PASSWORD=
+
+# Install dependency
+composer install
+npm install     # jika ada asset frontend
+npm run dev     # atau npm run build
+
+# Generate application key
+php artisan key:generate
+
+# Jalankan migrasi database
+php artisan migrate
+
+# Jalankan server
+php artisan queue:work
+php artisan serve
+```
+
+Akses aplikasi di browser:
+
+**[http://localhost:8000](http://localhost:8000)**
+
+
+## Catatan Khusus
+
+* Folder `app/proxy/` berisi **sertifikat SSL** untuk scanner.
+* Pastikan konfigurasi SSL telah diatur agar fitur url fuzzing berfungsi dengan baik.
+
+
+## Etika & Legal
+
+Proyek ini **hanya untuk tujuan edukasi**.
+Dilarang keras menggunakan fitur pentesting, fuzzing, atau scanner untuk **serangan atau akses tanpa izin**.
+Segala penyalahgunaan bukan tanggung jawab pengembang.
+
+## Lisensi
+
+Proyek ini dikembangkan untuk keperluan edukasi oleh mahasiswa **STTI NIIT I-TECH**.
+Dilarang menggunakan untuk aktivitas ilegal, eksploitasi, atau komersialisasi tanpa izin.
+
+## Kontak Developer
+
+**Anggi Prayitno**
+🔗 [https://github.com/anggi135](https://github.com/anggi135)
+
