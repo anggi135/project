@@ -318,12 +318,36 @@ document.addEventListener('DOMContentLoaded', () => {
       const controller = new AbortController();
       const id = setTimeout(() => controller.abort(), timeout);
 
-      const response = await fetch(url, {
-        method,
-        headers,
-        body: (method !== 'GET' && body.trim()) ? body : undefined,
-        signal: controller.signal
-      });
+
+      
+      const response = await fetch('/api-testing/send', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+  },
+  body: JSON.stringify({
+    method,
+    url,
+    body,
+    bearer,
+    timeout: parseInt(document.getElementById('timeout').value),
+    headers: [...headersList.querySelectorAll('.kv-row')].map(r => ({
+      key: r.querySelector('.key').value,
+      value: r.querySelector('.value').value
+    })),
+    params: [...paramsList.querySelectorAll('.kv-row')].map(r => ({
+      key: r.querySelector('.key').value,
+      value: r.querySelector('.value').value
+    })),
+  }),
+  signal: controller.signal
+});
+
+
+
+
+
       clearTimeout(id);
 
       const endTime = performance.now();

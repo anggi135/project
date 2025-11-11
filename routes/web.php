@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Comment;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FuzzController;
 use App\Http\Controllers\PentestApiController;
@@ -106,7 +105,7 @@ Route::middleware(['auth'])->group(function () {
 // Modul API PEntest
 // =============================
 
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth'])->group(function () {
     Route::get('/api-testing', [PentestApiController::class, 'index'])->name('api-testing.index');
     Route::post('/api-testing/send', [PentestApiController::class, 'send'])->name('api-testing.send');
     Route::post('/api-testing/save', [PentestApiController::class, 'saveRequest'])->name('api-testing.save');
