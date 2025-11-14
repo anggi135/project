@@ -128,8 +128,8 @@
 <!-- HERO -->
 <section class="text-white py-5" style="background: linear-gradient(to right, #1f2937, #111827);">
   <div class="container text-center">
-    <h1 class="display-5 fw-bold animate__animated animate__fadeInDown">⚙️ API Testing Panel</h1>
-    <p class="lead animate__animated animate__fadeInUp">Uji endpoint API-mu dengan tema terang profesional</p>
+    <h1 class="display-5 fw-bold animate__animated animate__fadeInDown">API Pentest</h1>
+    <p class="lead animate__animated animate__fadeInUp">Uji endpoint api-mu dengan web keren ini</p>
   </div>
 </section>
 
@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const id = setTimeout(() => controller.abort(), timeout);
 
 
-      
+
       const response = await fetch('/api-testing/send', {
   method: 'POST',
   headers: {

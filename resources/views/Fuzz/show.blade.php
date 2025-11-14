@@ -63,16 +63,17 @@
       </div>
       <div class="card-body p-0">
         <div class="table-responsive" style="max-height: 450px; overflow-y: auto;">
-          <table class="table table-sm table-bordered mb-0">
-            <thead class="table-dark text-nowrap">
-              <tr>
-                <th style="width:40px">#</th>
-                <th>Word</th>
-                <th style="width:100px">Status</th>
-                <th>URL</th>
-                <th style="width:140px">Last Seen</th>
-              </tr>
-            </thead>
+<table class="table table-sm mb-0">
+<thead class="table-dark">
+  <tr>
+    <th style="width:30px">#</th>
+    <th>Word</th>
+    <th style="width:60px">Status</th>
+    <th>URL</th>
+    <th style="width:80px">Last Seen</th>
+  </tr>
+</thead>
+
             <tbody id="results">
               <tr>
                 <td colspan="5" class="text-center text-muted py-4">
@@ -224,6 +225,18 @@ body { background: #0d1117; color: #e2e8f0; }
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
+
+/* --- FIX RESPONSIVE TABLE MOBILE --- */
+.table {
+  table-layout: fixed;
+}
+
+.table td, .table th {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  word-break: break-all !important;
+}
+
 
 /* === Tombol modern gelap === */
 .btn-modern-dark {
