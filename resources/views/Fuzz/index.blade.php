@@ -79,7 +79,7 @@
     <div class="card shadow-sm border-0 mx-auto" style="max-width: 9900px;">
       <div class="card-body p-3">
         <div class="d-flex justify-content-between align-items-center mb-3">
-          <h5 class="mb-0 fw-semibold">🗂️ Riwayat Fuzz</h5>
+          <h5 class="mb-0 fw-semibold">Riwayat Fuzz</h5>
 
           <!-- Tombol Hapus Semua -->
           <form action="{{ route('fuzz.destroyAll') }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus semua riwayat fuzz milik Anda?')" class="mb-0">
