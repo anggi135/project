@@ -11,10 +11,10 @@
   </div>
 </section>
 
-<section class="py-5 bg-light text-dark">
+<section class="py-5" style="background: rgba(31,41,55,0.6);">
   <div class="container" data-aos="fade-up">
-    <div class="card shadow-lg border-0 mx-auto mb-4" style="max-width: 9900px;;">
-      <div class="card-body p-4">
+    <div class="card shadow-lg mx-auto mb-4" style="max-width: 990px; background: rgba(255,255,255,0.08); backdrop-filter: blur(6px); border:1px solid rgba(255,255,255,0.15);">
+      <div class="card-body p-4 text-white">
         <h4 class="fw-bold mb-3">Buat Job Fuzzer Baru</h4>
 
         @if (session('success'))
@@ -36,13 +36,13 @@
           <div class="mb-3">
             <label class="form-label fw-semibold">Target URL</label>
             <input type="url" name="target" class="form-control" placeholder="https://example.com" required>
-            <div class="form-text">Masukkan base URL target (tanpa path khusus kecuali memang diperlukan).</div>
+            <div class="form-text text-white-50">Masukkan base URL target (tanpa path khusus kecuali memang diperlukan).</div>
           </div>
 
           <div class="mb-3">
             <label class="form-label fw-semibold">Upload Wordlist (.txt)</label>
             <input type="file" name="wordlist_upload" id="wordlist_upload" class="form-control" accept=".txt">
-            <div id="wordlistName" class="form-text text-muted">
+            <div id="wordlistName" class="form-text text-white-50">
               Tidak ada file yang dipilih — akan memakai wordlist default jika kosong.
             </div>
           </div>
@@ -60,7 +60,7 @@
 
           <div class="form-check mb-3">
             <input class="form-check-input" type="checkbox" name="legal" id="legal" required>
-            <label class="form-check-label" for="legal">
+            <label class="form-check-label text-white" for="legal">
               Saya memiliki izin untuk melakukan pengujian pada target ini
             </label>
           </div>
@@ -76,12 +76,11 @@
     </div>
 
     <!-- Riwayat -->
-    <div class="card shadow-sm border-0 mx-auto" style="max-width: 9900px;">
-      <div class="card-body p-3">
+    <div class="card shadow-lg mx-auto" style="max-width: 990px; background: rgba(255,255,255,0.08); backdrop-filter: blur(6px); border:1px solid rgba(255,255,255,0.15);">
+      <div class="card-body p-3 text-white">
         <div class="d-flex justify-content-between align-items-center mb-3">
           <h5 class="mb-0 fw-semibold">Riwayat Fuzz</h5>
 
-          <!-- Tombol Hapus Semua -->
           <form action="{{ route('fuzz.destroyAll') }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus semua riwayat fuzz milik Anda?')" class="mb-0">
             @csrf
             @method('DELETE')
@@ -92,8 +91,8 @@
         </div>
 
         <div class="table-responsive">
-          <table class="table table-bordered table-hover mb-0 bg-white align-middle">
-            <thead class="table-light">
+          <table class="table table-bordered table-hover mb-0 text-white align-middle" style="background: rgba(255,255,255,0.05);">
+            <thead style="background: rgba(255,255,255,0.1);">
               <tr>
                 <th>ID</th>
                 <th>Target</th>
@@ -134,7 +133,7 @@
                 </tr>
               @empty
                 <tr>
-                  <td colspan="5" class="text-center text-muted py-3">Belum ada job fuzzing.</td>
+                  <td colspan="5" class="text-center text-white-50 py-3">Belum ada job fuzzing.</td>
                 </tr>
               @endforelse
             </tbody>
@@ -150,6 +149,7 @@
     </div>
   </div>
 </section>
+
 <footer class="text-center text-white bg-dark py-3" data-aos="fade-up">
   <small>&copy; 2025 Cyber Defense Team | All Rights Reserved</small>
 </footer>
@@ -158,33 +158,6 @@
 @push('styles')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <style>
-  section.bg-light { color: #212529; }
-  .table td, .table th { vertical-align: middle; }
+  table td, table th { vertical-align: middle; }
 </style>
-@endpush
-
-@push('scripts')
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const input = document.getElementById('wordlist_upload');
-  const nameEl = document.getElementById('wordlistName');
-  if (input) {
-    input.addEventListener('change', function () {
-      const f = input.files && input.files[0];
-      nameEl.textContent = f ? `File dipilih: ${f.name} (${Math.round(f.size/1024)} KB)` : 'Tidak ada file yang dipilih — akan memakai wordlist default jika kosong.';
-    });
-  }
-
-  // auto-collapse navbar on mobile
-  document.querySelectorAll('.navbar-collapse .nav-link').forEach(function (link) {
-    link.addEventListener('click', function () {
-      const bsCollapse = document.querySelector('.navbar-collapse');
-      if (bsCollapse && bsCollapse.classList.contains('show')) {
-        const collapse = bootstrap.Collapse.getInstance(bsCollapse) || new bootstrap.Collapse(bsCollapse);
-        collapse.hide();
-      }
-    });
-  });
-});
-</script>
 @endpush

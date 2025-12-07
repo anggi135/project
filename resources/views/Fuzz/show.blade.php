@@ -2,27 +2,26 @@
 
 @section('content')
 <!-- Hero Section -->
-
-
 <section class="text-white py-5" style="background: linear-gradient(to right, #1f2937, #111827);">
   <div class="container text-center">
     <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">Hasil Fuzzing</h1>
-    <p class="lead animate__animated animate__fadeInUp">Keterangan Code</br>
+    <p class="lead animate__animated animate__fadeInUp">
+      Keterangan Code<br>
       404 Tidak Ditemukan (halaman tidak tersedia)<br>
       403 Akses Dilarang (forbidden)<br>
       500 Kesalahan Server Internal<br>
       200 OK (halaman berhasil dimuat)
-</p>
-
+    </p>
   </div>
 </section>
 
 <!-- Main Section -->
-<section class="py-5 bg-light text-dark">
+<section class="py-5" style="background: rgba(31,41,55,0.6);">
   <div class="container" data-aos="fade-up">
 
-    <!-- Job Info -->
-    <div class="card shadow border-0 mb-4">
+    <!-- Job Info Card -->
+    <div class="card shadow-lg mx-auto mb-4" 
+         style="background: rgba(255,255,255,0.08); backdrop-filter: blur(6px); border:1px solid rgba(255,255,255,0.15); color: #e2e8f0;">
       <div class="card-body">
         <div class="row text-center text-md-start align-items-center">
           <div class="col-md-4 col-12 mb-2 mb-md-0">
@@ -55,25 +54,26 @@
       </div>
     </div>
 
-    <!-- Results -->
-    <div class="card shadow-lg border-0">
-      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+    <!-- Results Card -->
+    <div class="card shadow-lg mx-auto" 
+         style="background: rgba(255,255,255,0.08); backdrop-filter: blur(6px); border:1px solid rgba(255,255,255,0.15); color: #e2e8f0;">
+      <div class="card-header d-flex justify-content-between align-items-center" 
+           style="background: rgba(17,24,39,0.85); color: #fff; font-weight:600; position: sticky; top:0; z-index:10; border-bottom: 1px solid rgba(255,255,255,0.15);">
         <h5 class="mb-0">Hasil Fuzzing</h5>
         <small id="last-update" class="text-light">Memuat...</small>
       </div>
       <div class="card-body p-0">
         <div class="table-responsive" style="max-height: 450px; overflow-y: auto;">
-<table class="table table-sm mb-0">
-<thead class="table-dark">
-  <tr>
-    <th style="width:30px">#</th>
-    <th>Word</th>
-    <th style="width:60px">Status</th>
-    <th>URL</th>
-    <th style="width:80px">Last Seen</th>
-  </tr>
-</thead>
-
+          <table class="table table-sm mb-0">
+            <thead style="background: rgba(255,255,255,0.1);">
+              <tr>
+                <th style="width:30px">#</th>
+                <th>Word</th>
+                <th style="width:60px">Status</th>
+                <th>URL</th>
+                <th style="width:80px">Last Seen</th>
+              </tr>
+            </thead>
             <tbody id="results">
               <tr>
                 <td colspan="5" class="text-center text-muted py-4">
@@ -89,10 +89,13 @@
 
   </div>
 </section>
+
+<!-- Footer -->
 <footer class="text-center text-white bg-dark py-3" data-aos="fade-up">
   <small>&copy; 2025 Cyber Defense Team | All Rights Reserved</small>
 </footer>
 
+<!-- JS -->
 <script>
 const jobId = {{ $job->id }};
 const resultsTable = document.getElementById('results');
@@ -212,9 +215,10 @@ function escapeHtml(unsafe){
 }
 </script>
 
+<!-- Styles -->
 <style>
 body { background: #0d1117; color: #e2e8f0; }
-.card { border-radius: 12px; background: #1a1f24; color: #e2e8f0; }
+.card { border-radius: 12px; }
 .table th, .table td { vertical-align: middle; font-size: 0.9rem; }
 .table a { color: #58a6ff; text-decoration: none; }
 .table a:hover { text-decoration: underline; }
@@ -226,19 +230,11 @@ body { background: #0d1117; color: #e2e8f0; }
   gap: 12px;
 }
 
-/* --- FIX RESPONSIVE TABLE MOBILE --- */
-.table {
-  table-layout: fixed;
+@media (max-width: 576px) {
+  .fuzz-btn-row { grid-template-columns: 1fr; }
 }
 
-.table td, .table th {
-  white-space: normal !important;
-  word-wrap: break-word !important;
-  word-break: break-all !important;
-}
-
-
-/* === Tombol modern gelap === */
+/* Tombol Modern Gelap */
 .btn-modern-dark {
   background-color: #111827;
   color: #e5e7eb;
@@ -248,14 +244,12 @@ body { background: #0d1117; color: #e2e8f0; }
   transition: all 0.25s ease-in-out;
   box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
-
 .btn-modern-dark:hover {
   background-color: #1f2937;
   color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(59,130,246,0.4);
 }
-
 .btn-modern-outline {
   background: transparent;
   color: #e5e7eb;
@@ -264,7 +258,6 @@ body { background: #0d1117; color: #e2e8f0; }
   padding: 12px 0;
   transition: all 0.25s ease-in-out;
 }
-
 .btn-modern-outline:hover {
   background-color: #2563eb;
   color: #fff;
@@ -272,25 +265,17 @@ body { background: #0d1117; color: #e2e8f0; }
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(37,99,235,0.4);
 }
-
-/* Efek khusus */
 .btn-success-glow {
   background-color: #16a34a !important;
   box-shadow: 0 0 10px rgba(34,197,94,0.6);
 }
-
 .btn-danger-glow {
   background-color: #dc2626 !important;
   box-shadow: 0 0 10px rgba(239,68,68,0.6);
 }
-
 .btn-modern-dark.disabled {
   opacity: 0.6;
   cursor: not-allowed;
-}
-
-@media (max-width: 576px) {
-  .fuzz-btn-row { grid-template-columns: 1fr; }
 }
 </style>
 @endsection

@@ -139,7 +139,7 @@
       <div class="container-fluid mt-4">
   <div class="d-flex justify-content-end mb-3">
     <!-- Tombol Gir -->
-    <button id="toggleSidebar" class="btn btn-outline-light btn-sm">
+    <button id="toggleSidebar" class="btn btn-outline-light btn-sm">⚙️
       <i class="bi bi-gear-fill"></i>
     </button>
   </div>
