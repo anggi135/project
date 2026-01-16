@@ -127,7 +127,12 @@ class RunFuzzJob implements ShouldQueue
             : "{$target}/" . ltrim($word, '/');
 
         try {
-            $response = Http::timeout(10)->get($url);
+            // PERUBAHAN DISINI:
+            // Ditambahkan ->withoutVerifying() untuk bypass SSL error
+            $response = Http::withoutVerifying()
+                ->timeout(10)
+                ->get($url);
+
             $status = $response->status();
             $body = (string) $response->body();
             $length = strlen($body);
