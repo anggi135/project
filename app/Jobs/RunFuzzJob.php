@@ -14,12 +14,14 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use App\Models\FuzzJob;
 use App\Models\FuzzResult;
+use App\Support\SsrfGuard;
 use Throwable;
 use Exception;
 
 class RunFuzzJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use SsrfGuard;
 
     /** @var int */
     public $jobId;
@@ -50,6 +52,13 @@ class RunFuzzJob implements ShouldQueue
         // Set status running bila belum aktif
         if (!in_array($fuzzJob->status, ['running'])) {
             $fuzzJob->update(['status' => 'running']);
+        }
+
+        // Mitigasi SSRF (A10:2021): tolak target privat/loopback/link-local
+        // sebelum job mulai melakukan ribuan request.
+        if ($this->isPrivateHost($fuzzJob->target)) {
+            $this->failJob($fuzzJob, 'Target host tidak diizinkan (private/loopback/link-local).');
+            return;
         }
 
         // Ambil wordlist dari storage atau resource
@@ -126,12 +135,24 @@ class RunFuzzJob implements ShouldQueue
             ? $word
             : "{$target}/" . ltrim($word, '/');
 
+        // Cegah celah SSRF kedua: wordlist bisa berisi URL absolut
+        // (http://... ) yang menimpa target asli, jadi divalidasi lagi per kata.
+        if ($this->isPrivateHost($url)) {
+            FuzzResult::create([
+                'fuzz_job_id'  => $fuzzJob->id,
+                'matched_word' => $word,
+                'url'          => $url,
+                'status'       => null,
+                'length'       => 0,
+                'snippet'      => 'BLOCKED: target host tidak diizinkan (private/loopback).',
+            ]);
+            return;
+        }
+
         try {
-            // PERUBAHAN DISINI:
-            // Ditambahkan ->withoutVerifying() untuk bypass SSL error
-            $response = Http::withoutVerifying()
-                ->timeout(10)
-                ->get($url);
+            // SSL verification tetap aktif secara default; jangan gunakan
+            // withoutVerifying() kecuali target sudah divalidasi & di-allowlist.
+            $response = Http::timeout(10)->get($url);
 
             $status = $response->status();
             $body = (string) $response->body();
