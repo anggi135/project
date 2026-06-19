@@ -49,9 +49,10 @@ trait SsrfGuard
         return false;
     }
 
-    protected function ipIsPrivate(string $ip): bool
+    /** Daftar rentang IP privat/loopback/link-local yang harus diblokir. */
+    private static function privateIpRanges(): array
     {
-        $privateRanges = [
+        return [
             '127.0.0.0/8',
             '10.0.0.0/8',
             '172.16.0.0/12',
@@ -61,8 +62,11 @@ trait SsrfGuard
             '::1/128',
             'fe80::/10',
         ];
+    }
 
-        foreach ($privateRanges as $range) {
+    protected function ipIsPrivate(string $ip): bool
+    {
+        foreach (self::privateIpRanges() as $range) {
             if ($this->cidrMatch($ip, $range)) {
                 return true;
             }
@@ -79,19 +83,34 @@ trait SsrfGuard
 
         [$subnet, $bits] = explode('/', $range);
 
-        if (strpos($ip, ':') !== false || strpos($subnet, ':') !== false) {
-            // IPv6: hanya cocokkan persis ::1 di luar fe80::/10 (disederhanakan).
-            return strtolower($ip) === strtolower($subnet);
+        if ($this->isIpv6($ip) || $this->isIpv6($subnet)) {
+            return $this->cidrMatchIpv6($ip, $subnet);
         }
 
+        return $this->cidrMatchIpv4($ip, $subnet, (int) $bits);
+    }
+
+    private function isIpv6(string $ip): bool
+    {
+        return strpos($ip, ':') !== false;
+    }
+
+    private function cidrMatchIpv6(string $ip, string $subnet): bool
+    {
+        // Simplified: hanya cocokkan persis (cukup untuk blok ::1 / fe80::).
+        return strtolower($ip) === strtolower($subnet);
+    }
+
+    private function cidrMatchIpv4(string $ip, string $subnet, int $bits): bool
+    {
         $ipLong = ip2long($ip);
         $subnetLong = ip2long($subnet);
+
         if ($ipLong === false || $subnetLong === false) {
             return true; // gagal parse => anggap berbahaya, blokir
         }
 
-        $mask = -1 << (32 - (int) $bits);
-        $mask &= 0xFFFFFFFF;
+        $mask = (-1 << (32 - $bits)) & 0xFFFFFFFF;
 
         return ($ipLong & $mask) === ($subnetLong & $mask);
     }
