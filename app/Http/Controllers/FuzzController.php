@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Cache;
 use App\Models\FuzzJob;
 use App\Models\FuzzResult;
 use App\Jobs\RunFuzzJob;
+use App\Support\SsrfGuard;
 
 class FuzzController extends Controller
 {
+    use SsrfGuard;
     /**
      * Tampilkan daftar semua job milik user.
      */
@@ -36,6 +38,11 @@ class FuzzController extends Controller
             'rate_limit' => 'nullable|numeric|min:0.1',
             'legal' => 'accepted',
         ]);
+
+        // Mitigasi SSRF (A10:2021): tolak di awal sebelum job di-dispatch.
+        if ($this->isPrivateHost($request->target)) {
+            return back()->withErrors(['target' => 'Target host tidak diizinkan (private/loopback/link-local).']);
+        }
 
         $wordlistPath = null;
         $wordlistName = $request->input('wordlist') ?? null;
